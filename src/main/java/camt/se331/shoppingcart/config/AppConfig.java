@@ -70,11 +70,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return localChangeInterceptor;
     }
 
+
     @Bean
-    public MultipartResolver multipartResolver(){
+    public MultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
         multipartResolver.setMaxUploadSize(1000000);
         return multipartResolver;
     }
-
 }

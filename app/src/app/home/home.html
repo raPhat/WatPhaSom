@@ -1,0 +1,65 @@
+<div class="slides_control">
+  <carousel interval="vm.myInterval">
+    <slide ng-repeat="slide in vm.slides" active="slide.active">
+      <div class="img" style="background-image: url('{{slide.image}}')"></div>
+      <div class="carousel-caption">
+        <h3>What is Lorem Ipsum?</h3>
+
+        <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</p>
+      </div>
+    </slide>
+  </carousel>
+</div>
+
+<div class="container example-section">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="card">
+        <div class="img"
+             style="background-image: url('http://www.saveonatoz.com/wp-content/uploads/2014/09/rice.jpg')"></div>
+        <div class="content">
+          <header>
+            KARJKENG.
+          </header>
+          <div class="subHeader">
+            in-ongkarn
+          </div>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          </p>
+        </div>
+        <hr class="divider"/>
+        <footer>
+          <div class="input-group">
+            <input type="number" class="form-control">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+                <strong>
+                  <i class="glyphicon glyphicon-plus"></i>
+                </strong>
+              </button>
+            </span>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 hidden-xs">
+      <div class="card">
+        a
+      </div>
+    </div>
+    <div class="col-md-3 visible-md visible-lg">
+      <div class="card">
+        a
+      </div>
+    </div>
+    <div class="col-md-3 visible-md visible-lg">
+      <div class="card">
+        a
+      </div>
+    </div>
+  </div>
+  <br/>
+
+</div>
+

@@ -13,7 +13,7 @@
         <spring.version>4.2.4.RELEASE</spring.version>
         <jacksondatabine.version>2.5.0</jacksondatabine.version>
         <slf.version>1.7.10</slf.version>
-        <spring.security.version>4.0.4 RELEASE</spring.security.version>
+        <spring.security.version>4.0.4.RELEASE</spring.security.version>
     </properties>
 
     <dependencies>

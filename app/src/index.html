@@ -1,85 +1,183 @@
 <!doctype html>
 <html ng-app="app">
-  <head>
-    <meta charset="utf-8">
-    <title>app</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<head>
+  <meta charset="utf-8">
+  <title>app</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <!-- build:css({.tmp/serve,src}) styles/app.css -->
-    <!-- inject:css -->
-    <!-- css files will be automatically insert here -->
-    <!-- endinject -->
-    <!-- endbuild -->
-  </head>
-  <body>
-  <div class="page-header">
-    <h1>CAMT
-      <small>Software Component Based Software Development</small>
-    </h1>
+  <!-- build:css({.tmp/serve,src}) styles/app.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+  <style>
+    /* Note: Try to remove the following lines to see the effect of CSS positioning */
+    .affix {
+      top: 0;
+      width: 100%;
+    }
 
+    .affix + .container-fluid {
+      padding-top: 70px;
+    }
+  </style>
+</head>
+<body>
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#">
+          Start Bootstrap
+        </a>
+      </li>
+      <li>
+        <a href="#">Dashboard</a>
+      </li>
+      <li>
+        <a href="#">Shortcuts</a>
+      </li>
+      <li>
+        <a href="#">Overview</a>
+      </li>
+      <li>
+        <a href="#">Events</a>
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="#">Services</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+    </ul>
   </div>
-  <div class="navbar navbar-default" ng-controller="LanguageController">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse">
-        <div ng-include src ="'app/security/login.html'"></div>
-        <ul class="nav navbar-nav navbar-right">
-          <li  ng-show="hasRole('ForeignUser')" ng-class="{'active':currentLocale== 'en'}" ><a href="" ng-click="changeLanguage('en')" >EN </a></li>
-          <li  ng-show="hasRole('ForeignUser')" ng-class="{'active':currentLocale== 'fr'}" ><a href="" ng-click="changeLanguage('fr')" >FR</a></li>
+  <!-- /#sidebar-wrapper -->
+
+  <div class="topGradient"></div>
+  <nav class="navbar navbar-tranparent navbar-inverse navbar-fixed-top wat-navbar">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed menu-toggle border" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <i class="glyphicon glyphicon-menu-hamburger"></i>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
         </ul>
-      </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
     </div>
-  </div>
-  <div class="container ng-hide" ng-show = "initialized">
-    <div class="alert alert-dangeer" ng-show="error">{{error}}</div>
-  </div>
+  </nav>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-2">
-        <!-- Fixed left nav column -->
-        <div ng-include src="'app/component/leftnav.html'"></div>
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <ng-view>
+      <div class="ui segment">
+        <div class="ui active inverted dimmer">
+          <div class="ui loader"></div>
+        </div>
       </div>
-      <div class="col-md-10">
-        <!-- Breadcrumbs
-       ================================================== -->
-
-
-        <ng-view>Loading...</ng-view>
-
-      </div>
-    </div>
+    </ng-view>
   </div>
+  <!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
 
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
 
-  </body>
+<!-- build:js(src) scripts/vendor.js -->
+<!-- bower:js -->
+<!-- run `gulp inject` to automatically populate bower script dependencies -->
+<!-- endbower -->
+<!-- endbuild -->
 
-    <!-- build:js(src) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- run `gulp inject` to automatically populate bower script dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
 
-    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-    <!-- inject:js -->
-    <!-- js files will be automatically insert here -->
-    <!-- endinject -->
+<!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+<!-- inject:js -->
+<!-- js files will be automatically insert here -->
+<!-- endinject -->
 
-    <!-- inject:partials -->
-    <!-- angular templates will be automatically converted in js and inserted here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+<!-- inject:partials -->
+<!-- angular templates will be automatically converted in js and inserted here -->
+<!-- endinject -->
+<!-- endbuild -->
 
-  </body>
+
+<script type="text/javascript"
+        src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript"
+        src="js/aff.js"></script>
+<script>
+  $(document)
+    .ready(function () {
+
+      $(".menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+      });
+
+      $(window).scroll(function(){
+        setNavBar();
+      })
+      function setNavBar() {
+        if($( window ).scrollTop() > 50) {
+          $('.wat-navbar').removeClass('navbar-tranparent');
+        } else {
+          $('.wat-navbar').addClass('navbar-tranparent');
+        }
+      }
+      setNavBar();
+
+    })
+  ;
+</script>
+
+</body>
 </html>

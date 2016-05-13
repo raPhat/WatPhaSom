@@ -41,7 +41,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
         dynamic.addMapping("/");
         servletContext.addListener(new ContextLoaderListener(ctx));
         servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"))
-                .addMappingForUrlPatterns(null,false,"/*");
+                .addMappingForUrlPatterns(null, false, "/*");
         dynamic.setLoadOnStartup(1);  
    }  
 }

@@ -3,17 +3,10 @@ package camt.se331.shoppingcart.service;
 import camt.se331.shoppingcart.dao.ProductDao;
 import camt.se331.shoppingcart.entity.Image;
 import camt.se331.shoppingcart.entity.Product;
-import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -60,11 +53,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional
     public Product addImage(Product product, Image image) {
-        image=ImageUtil.resizeImage(image,200);
         product.getImages().add(image);
         productDao.updateProduct(product);
         return product;
     }
-
-
 }

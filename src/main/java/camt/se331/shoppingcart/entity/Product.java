@@ -19,27 +19,9 @@ public class Product implements Comparable{
     String description;
     Double totalPrice;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch= FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     Set<Image> images = new HashSet<>();
-
-    public Product(Long id,String name, String description, Double totalPrice, Image image) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.totalPrice = totalPrice;
-        this.images.add(image) ;
-    }
-
-
-
-    public Set<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(Set<Image> images) {
-        this.images = images;
-    }
 
     public Long getId() {
         return id;
@@ -53,6 +35,14 @@ public class Product implements Comparable{
 
     };
 
+    public Product(Long id,String name, String description, Double price,Image image) {
+        this.name = name;
+        this.description = description;
+        this.totalPrice = price;
+        this.id = id;
+        this.getImages().add(image);
+    }
+
     public Double getNetPrice(){
         return getTotalPrice()*(1-VatEntity.getInstance().getVat());
     }
@@ -60,29 +50,7 @@ public class Product implements Comparable{
     public Double getTax(){
         return 0.0;
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product)) return false;
 
-        Product product = (Product) o;
-
-        if (description != null ? !description.equals(product.description) : product.description != null) return false;
-        if (id != null ? !id.equals(product.id) : product.id != null) return false;
-        if (name != null ? !name.equals(product.name) : product.name != null) return false;
-        if (totalPrice != null ? !totalPrice.equals(product.totalPrice) : product.totalPrice != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (totalPrice != null ? totalPrice.hashCode() : 0);
-        result = 31 * result + (id != null ? id.hashCode() : 0);
-        return result;
-    }
 
     public Product(Long id,String name, String description, Double price) {
         this.name = name;
@@ -119,5 +87,40 @@ public class Product implements Comparable{
     public int compareTo(Object o) {
 
         return (int) (this.getId() - ((Product)o).getId());
+    }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+
+        Product product = (Product) o;
+
+        if (getId() != null ? !getId().equals(product.getId()) : product.getId() != null) return false;
+        if (getName() != null ? !getName().equals(product.getName()) : product.getName() != null) return false;
+        if (getDescription() != null ? !getDescription().equals(product.getDescription()) : product.getDescription() != null)
+            return false;
+        if (getTotalPrice() != null ? !getTotalPrice().equals(product.getTotalPrice()) : product.getTotalPrice() != null)
+            return false;
+        return !(getImages() != null ? !getImages().equals(product.getImages()) : product.getImages() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
+        result = 31 * result + (getTotalPrice() != null ? getTotalPrice().hashCode() : 0);
+        result = 31 * result + (getImages() != null ? getImages().hashCode() : 0);
+        return result;
     }
 }

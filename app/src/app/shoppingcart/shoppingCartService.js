@@ -1,16 +1,26 @@
-(function() {
-'use strict'
+(function () {
+  'use strict'
   angular
     .module('app')
-    .factory('shoppingCartService',shoppingCartService);
+    .factory('shoppingCartService', shoppingCartService)
+    .factory('cartManagement', cartManagement);
 
   /** @ngInject */
 
-  function shoppingCartService($resource){
-    return $resource('http://localhost:8080/shoppingcart/:id', { id: '@_id' }, {
-        update: {
-            method: 'PUT' // this method issues a PUT request
-        }});
+  function shoppingCartService($resource) {
+    return $resource('/shoppingcart/:id', {id: '@_id'}, {
+      update: {
+        method: 'PUT' // this method issues a PUT request
+      }
+    });
+  }
 
-}
+  function cartManagement($resource) {
+    return $resource('/shoppingcart/:action', {}, {
+      addToCart: {
+        method: 'POST',
+        params: {'action': 'addToCart'}
+      }
+    });
+  }
 })();

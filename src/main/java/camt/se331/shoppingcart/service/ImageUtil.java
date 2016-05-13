@@ -1,12 +1,11 @@
 package camt.se331.shoppingcart.service;
 
 import camt.se331.shoppingcart.entity.Image;
-import org.imgscalr.Scalr;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Calendar;
 
@@ -46,40 +45,4 @@ public class ImageUtil {
 
     }
 
-    public static Image resizeImage(Image image,int width){
-        // resize image
-
-        InputStream imageStream = new ByteArrayInputStream(image.getContent());
-        try {
-            // change the image byte array to Buffer Image
-            BufferedImage bufferedImage = ImageIO.read(imageStream);
-            //Scale the image using the default api
-            BufferedImage scaledImage = Scalr.resize(bufferedImage,100);
-
-            //Convert BufferedImage to byte
-            // convert BufferedImage to byte array
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(scaledImage, getFileExtension(image.getFileName()), baos);
-            baos.flush();
-            byte[] imageInByte = baos.toByteArray();
-            baos.close();
-            image.setContent(imageInByte);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
-
-    private static String getFileExtension(String fileName){
-        String extension = "";
-
-        int i = fileName.lastIndexOf('.');
-        int p = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
-
-        if (i > p) {
-            extension = fileName.substring(i+1);
-        }
-        return extension;
-    }
 }

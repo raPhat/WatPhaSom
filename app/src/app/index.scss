@@ -12,6 +12,8 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 // bower:scss
 // endbower
 
+//body { padding-top: 50px; }
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -58,9 +60,291 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   .error { display: block; float: none; color: red; padding-left: 11.5em; vertical-align: top; }
 }
 
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-left: 250px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  padding-top: 60px;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 0px;
+  }
+
+  #wrapper.toggled {
+    padding-left: 0;
+  }
+
+  #sidebar-wrapper {
+    width: 0px;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    width: 0;
+  }
+
+  #page-content-wrapper {
+    position: relative;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
  */
 // injector
 // endinjector
+
+@mixin linear-gradient($first,$second) {
+  background: rgba(0,0,0,0); /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient($first, $second); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($first, $second); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($first, $second); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($first, $second); /* Standard syntax */
+}
+.topGradient {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 150px;
+  z-index: 990;
+  @include linear-gradient( rgba(0,0,0,1) , rgba(0,0,0,0) );
+}
+
+
+.wat-menu {
+  height: 54px;
+  z-index: 1000 !important;
+}
+.wat-sidebar {
+  position: relative;
+  z-index: 1001 !important;
+}
+
+.slides_control .img{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  min-height: 350px;
+  padding-top: 35%;
+  background-position: center;
+  background-size: cover;
+}
+.slides_control {
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0,0,0,0.75);
+}
+
+.carousel-caption {
+  padding-bottom: 80px;
+  h3 {
+    text-shadow: 0 0 7px rgba(0,0,0,0.85);
+  }
+  p {
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0 3px rgba(0,0,0,0.85);
+  }
+}
+.carousel-indicators {
+  bottom: 60px;
+  li {
+    margin: auto 3px;
+  }
+}
+
+.xs-only {
+  display: none !important;
+}
+.xs-hide {
+  display: flex !important;
+}
+@media screen and (max-width: 420px) {
+  .xs-only {
+    display: flex !important;
+  }
+  .xs-hide {
+    display: none !important;
+  }
+}
+
+
+.example-section {
+  position: relative;
+  top: -20px;
+  .card {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+.card {
+  width: 100%;
+  background-color: #FFF;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  .img {
+    width: 100%;
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+  }
+  .content {
+    padding: 15px;
+    header {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .subHeader {
+      font-size: 12px;
+      color: rgba(0,0,0,0.35);
+    }
+    p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+    }
+  }
+  footer {
+    padding: 7px 15px;
+  }
+  hr {
+    margin: 0;
+  }
+}
+
+.wat-navbar {
+  -webkit-transition: all 500ms linear;
+  -moz-transition: all 500ms linear;
+  -o-transition: all 500ms linear;
+  -ms-transition: all 500ms linear;
+  transition: all 500ms linear;
+}
+.navbar-inverse {
+  background-color: rgba(0,0,0,1);
+  button.border {
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+}
+.navbar-tranparent {
+  .navbar-nav > li > a {
+    color: rgba(255,255,255,0.5) !important;
+    &:hover {
+      color: rgba(255,255,255,0.85) !important;
+    }
+  }
+  .navbar-nav > li.active > a {
+    color: #FFF !important;
+    background-color: rgba(0,0,0,0.5) !important;
+  }
+  background-color: rgba(0,0,0,0);
+  border: none;
+  top: 25px;
+  button.border {
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+}
+
+button.border {
+  color: #FFF;
+  padding: 7px 6px 5px 6px;
+  font-size: 14px;
+}
+
+
+

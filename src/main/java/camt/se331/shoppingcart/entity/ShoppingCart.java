@@ -1,10 +1,12 @@
 package camt.se331.shoppingcart.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,9 +21,23 @@ public class ShoppingCart {
 
     @OneToMany(fetch = FetchType.EAGER)
     @Cascade(CascadeType.ALL)
-    List<SelectedProduct> selectedProducts;
+    List<SelectedProduct> selectedProducts = new ArrayList<>();
     @Temporal(TemporalType.TIMESTAMP)
     Date purchaseDate;
+
+    @ManyToOne
+    @JsonBackReference
+    User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
     public double getTotalProductPrice(){
         return 0.0;
     };

@@ -3,21 +3,21 @@
 
   angular
     .module('app')
-    .controller('shoppingCartController', ShoppingCartController);
+    .controller('showShoppingCartController', ShowShoppingCartController);
 
 
   /** @ngInject */
-  function ShoppingCartController(shoppingCartService, $location, $rootScope, $rootParams) {
+  function ShowShoppingCartController(shoppingCartService, $location, $rootScope, $routeParams) {
     var vm = this;
-    var id = $rootParams.id;
+    var id = $routeParams.id;
     shoppingCartService.get({id: id}, function (data) {
       vm.cart = data;
     })
 
-    vm.$on('$locationChangeStart', function () {
-      $rootScope.cartUpdateSuccess = false;
-
-    });
+    //$on('$locationChangeStart', function () {
+    //  $rootScope.cartUpdateSuccess = false;
+    //
+    //});
 
     vm.updateCart = function () {
       shoppingCartService.update({id: id}, vm.cart, function () {

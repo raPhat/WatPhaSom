@@ -17,16 +17,17 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * Created by Bitee on 4/19/2016.
+ * Created by Dto on 4/18/2015.
  */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
-
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication().withUser("dto").password("123456").roles("USER");
+//        auth.inMemoryAuthentication().withUser("admin").password("123456").roles("ADMIN");
         auth.userDetailsService(customUserDetailsService);
     }
 
@@ -37,35 +38,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationTokenProcessingFilter authenticationTokenProcessingFilter;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .csrf().disable()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(authenticationEntryPoint)
-                .and()
+                    .authenticationEntryPoint(authenticationEntryPoint)
+                    .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/product/**").access("hasRole('admin')")
-                .antMatchers(HttpMethod.PUT,"/product/**").access("hasRole('admin')")
-                .antMatchers(HttpMethod.DELETE,"/product/**").access("hasRole('admin')")
-                .antMatchers("/shoppingcart/**")
-                .access("hasRole('user')")
+//                    .antMatchers(HttpMethod.GET, "/product/**").access("hasRole('admin')")
+//                    .antMatchers(HttpMethod.PUT, "/product/**").access("hasRole('admin')")
+//                    .antMatchers(HttpMethod.DELETE, "/product/**").access("hasRole('admin')")
+                    .antMatchers("/shoppingcart/**").permitAll()
                 .and()
-                .addFilterBefore(authenticationTokenProcessingFilter, UsernamePasswordAuthenticationFilter.class);
-    }
-    @Override
-    public void configure(WebSecurity web) throws Exception{
-        web
-                .ignoring()
-                .antMatchers("/css/**","/img/**","/js/**");
+                .addFilterBefore(authenticationTokenProcessingFilter, UsernamePasswordAuthenticationFilter.class)
+
+        ;
+
     }
 
-    @Bean(name = "myAuthenticationManager")
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/css/**", "/img/**", "/js/**");
+    }
+
+    @Bean(name="myAuthenticationManager")
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
-
 }

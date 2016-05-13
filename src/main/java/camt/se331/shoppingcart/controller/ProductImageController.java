@@ -15,18 +15,18 @@ import java.util.Calendar;
 import java.util.Iterator;
 
 /**
- * Created by Dto on 3/29/2016.
+ * Created by Dto on 4/27/2015.
  */
-@CrossOrigin
 @Controller
 @RequestMapping("/productImage")
+@CrossOrigin
 public class ProductImageController {
     @Autowired
     ProductService productService;
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     @ResponseBody
     public Product addImage(HttpServletRequest request,
-                            HttpServletResponse response, @RequestParam("productid")Long productId){
+                            HttpServletResponse response,@RequestParam("productid")Long productId){
         MultipartHttpServletRequest mRequest;
         Product product = productService.getProduct(productId);
         try{
@@ -35,7 +35,7 @@ public class ProductImageController {
             while(itr.hasNext()){
                 MultipartFile multipartFile = mRequest.getFile(itr.next());
                 Image image = new Image();
-                image.setFileName(multipartFile.getOriginalFilename());
+                image.setFileName(multipartFile.getName());
                 image.setContentType(multipartFile.getContentType());
                 image.setContent(multipartFile.getBytes());;
                 image.setCreated(Calendar.getInstance().getTime());

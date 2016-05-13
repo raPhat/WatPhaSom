@@ -1,14 +1,13 @@
 package camt.se331.shoppingcart.entity;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Date;
 
-/**
- * Created by Dto on 3/29/2016.
- */
+
 @Entity
 public class Image {
-        @Id
+    @Id
     @GeneratedValue
     private Long id;
 
@@ -19,9 +18,6 @@ public class Image {
 
     @Temporal(TemporalType.TIME)
     Date created;
-
-    public Image() {
-    }
 
     public Long getId() {
         return id;
@@ -59,15 +55,31 @@ public class Image {
         return created;
     }
 
-    public void setCreated(Date create) {
-        this.created = create;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
-    public Image(String fileName, byte[] content, String contentType, Date created) {
+    @Override
+    public boolean equals(Object o) {
 
-        this.fileName = fileName;
-        this.content = content;
-        this.contentType = contentType;
-        this.created = created;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Image image = (Image) o;
+
+        if (fileName != null ? !fileName.equals(image.fileName) : image.fileName != null) return false;
+        if (!Arrays.equals(content, image.content)) return false;
+        if (contentType != null ? !contentType.equals(image.contentType) : image.contentType != null) return false;
+        return !(created != null ? !created.equals(image.created) : image.created != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = fileName != null ? fileName.hashCode() : 0;
+        result = 31 * result + (content != null ? Arrays.hashCode(content) : 0);
+        result = 31 * result + (contentType != null ? contentType.hashCode() : 0);
+        result = 31 * result + (created != null ? created.hashCode() : 0);
+        return result;
     }
 }

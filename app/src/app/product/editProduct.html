@@ -5,6 +5,7 @@
     <div class="row" ng-show="editPerson">
         <h1>Edit Product</h1>
     </div>
+
     <div class="col-md-4">
         <form name="editform" novalidate flow-init>
             <div class="form-group">
@@ -58,8 +59,8 @@
                 </table>
             </div>
 
-            <button type="submit" class="btn btn-default" ng-click="addProductController.addProduct($flow)" ng-show="addProductController">Add</button>
-            <button type="submit" class="btn btn-default" ng-click="editProductController.editProduct()" ng-show="editProductController">Edit</button>
+            <button type="submit" class="btn btn-default" ng-click="vm.addProduct($flow)">Add</button>
+            <button type="submit" class="btn btn-default" ng-click="vm.editProduct()">Edit</button>
         </form>
     </div>
 </div>

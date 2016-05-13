@@ -34,14 +34,13 @@
 
 
   /** @ngInject */
-  function listProductController( $scope,$rootScope, productService, $route, queryProductService) {
+  function listProductController($scope, $http, $rootScope,productService,$route,queryProductService,cartManagement,$location) {
     var vm = this;
     //$http.get("/product/").success(function (data) {
     vm.queryPromise = productService.query(function (data) {
       // $scope.totalNetPrice= totalCalService.getTotalNetPrice(data);
      vm.products = data;
     }).$promise;
-
 
     $scope.$on('$locationChangeStart', function () {
       $rootScope.addSuccess = false;
@@ -65,6 +64,16 @@
       });
     }
 
+    vm.addToCart = function(product) {
+      product.images = null;
+      cartManagement.addToCart(product, function(shoppingCart) {
+        $rootScope.shoppingCart = shoppingCart;
+        $location.path("shoppingCart")
+      }, function (event) {
+        // fail event
+      })
+    }
+
   }
 
 
@@ -77,8 +86,8 @@
     productService.get({id:id},
       // success function
      function(data){
-       vm.product=data;
-       console.log(data);
+       vm.product = data;
+       console.log(vm.product);
      }
     );
 
@@ -87,7 +96,10 @@
       //$http.put("/product", $scope.product).then(function () {
       productService.update({id: vm.product.id}, vm.product, function () {
         $rootScope.editSuccess = true;
+        console.log(0);
         $location.path("listProduct");
+      }, function() {
+        console.log(1);
       });
     }
   }
