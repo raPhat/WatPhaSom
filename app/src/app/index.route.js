@@ -12,6 +12,11 @@
         controller: 'HomeController',
         controllerAs: 'vm'
       }).
+      when('/article', {
+        templateUrl: 'app/article/article.html',
+        controller: 'ArticleController',
+        controllerAs: 'vm'
+      }).
       when('/addProduct', {
         templateUrl: 'app/product/editProduct.html',
         controller: 'addProductController',
