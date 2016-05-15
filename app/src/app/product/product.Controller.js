@@ -69,7 +69,7 @@
       cartManagement.addToCart(product, function(shoppingCart) {
         $rootScope.shoppingCart = shoppingCart;
         $location.path("shoppingCart")
-      }, function (event) {
+      }, function () {
         // fail event
       })
     }
@@ -87,7 +87,6 @@
       // success function
      function(data){
        vm.product = data;
-       console.log(vm.product);
      }
     );
 
@@ -96,10 +95,8 @@
       //$http.put("/product", $scope.product).then(function () {
       productService.update({id: vm.product.id}, vm.product, function () {
         $rootScope.editSuccess = true;
-        console.log(0);
         $location.path("listProduct");
       }, function() {
-        console.log(1);
       });
     }
   }

@@ -30,7 +30,7 @@
     }
   </style>
 </head>
-<body>
+<body ng-controller="MainController">
 <div id="wrapper">
 
   <!-- Sidebar -->
@@ -66,54 +66,77 @@
   </div>
   <!-- /#sidebar-wrapper -->
 
-  <div class="topGradient"></div>
-  <nav class="navbar navbar-tranparent navbar-inverse navbar-fixed-top wat-navbar">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed menu-toggle border" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <i class="glyphicon glyphicon-menu-hamburger"></i>
-        </button>
-        <a class="navbar-brand" href="#">Brand</a>
-      </div>
+  <!--<div class="topGradient"></div>-->
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
+  <navbar class="wat-topBar">
+    <div class="container">
+      <div class="topLogo"></div>
+      <div class="topMenu">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul>
+              <li class="smLogo">
+                <img src="app/images/logo_sm.png" alt=""/>
+              </li>
+              <div class="leftMenu hidden-xs hidden-sm">
+                <li>
+                  <a href="#">
+                    <span class="glyphicon glyphicon-home"></span> HOME
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="glyphicon glyphicon-blackboard"></span> ARTICLES
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="glyphicon glyphicon-tags"></span> PRODUCTS
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="glyphicon glyphicon-random"></span> SERVICE
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="glyphicon glyphicon-question-sign"></span> CONTACT
+                  </a>
+                </li>
+              </div>
+              <div class="leftMenu hidden-md hidden-lg">
+                <li>
+                  <a href="#" class="menu-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span> MENU
+                  </a>
+                </li>
+              </div>
+              <li class="rightMenu hidden-xs">
+                <a href="#" class="cart">
+                  <i class="glyphicon glyphicon-shopping-cart"></i> <span class="hidden-xs">CART</span>
+                </a>
+              </li>
+              <li class="rightMenu hidden-xs">
+                <a href="" class="member MemberModal">
+                  <i class="glyphicon glyphicon-user"></i> <span class="hidden-xs">MEMBER</span>
+                </a>
+              </li>
             </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
+          </div>
+        </div>
+      </div>
     </div>
-  </nav>
+  </navbar>
+
+
+  <!--<button type="button" class="navbar-toggle collapsed menu-toggle border" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+    <!--<i class="glyphicon glyphicon-menu-hamburger"></i>-->
+  <!--</button>-->
 
   <!-- Page Content -->
   <div id="page-content-wrapper">
+    <div class="overlay"></div>
     <ng-view>
       <div class="ui segment">
         <div class="ui active inverted dimmer">
@@ -121,6 +144,9 @@
         </div>
       </div>
     </ng-view>
+
+    <footer>  </footer>
+
   </div>
   <!-- /#page-content-wrapper -->
 
@@ -150,6 +176,80 @@
 <!-- endbuild -->
 
 
+<!-- Modal Member -->
+<div class="modal member fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>
+          <div class="glyphicon glyphicon-user"></div>
+          Sign In
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" placeholder="Password">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Remember Me.
+            </label>
+          </div>
+          <button type="button" class="btn btn-success">
+            <span class="glyphicon glyphicon-send"> </span>
+            Submit
+          </button>
+          <button type="button" class="btn btn-default registerModal">Not MEMBER ?</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal ReGister -->
+<div class="modal Register fade" id="myRegister" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>
+          <div class="glyphicon glyphicon-user"></div>
+          Sign Up
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" placeholder="Password">
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Remember Me.
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-default MemberModal">Are you MEMBER ?</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script type="text/javascript"
+        src="js/bootstrap.js"></script>
 <script type="text/javascript"
         src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
 <script type="text/javascript"
@@ -162,15 +262,27 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
       });
+      $("#page-content-wrapper").click(function() {
+        $("#wrapper").removeClass("toggled");
+      });
+
+      $(".MemberModal").click(function() {
+        $('#myRegister').modal('hide');
+        $('#myModal').modal('toggle');
+      });
+      $(".registerModal").click(function() {
+        $('#myModal').modal('hide');
+        $('#myRegister').modal('toggle');
+      });
 
       $(window).scroll(function(){
         setNavBar();
       })
       function setNavBar() {
-        if($( window ).scrollTop() > 50) {
-          $('.wat-navbar').removeClass('navbar-tranparent');
+        if($( window ).scrollTop() > 0) {
+          $('.wat-topBar').addClass('toggled');
         } else {
-          $('.wat-navbar').addClass('navbar-tranparent');
+          $('.wat-topBar').removeClass('toggled');
         }
       }
       setNavBar();

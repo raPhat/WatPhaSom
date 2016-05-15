@@ -7,16 +7,25 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController($scope, $rootScope, $location, $cookies, UserService) {
+  function HomeController($scope, $rootScope) {
     var vm = this;
     vm.myInterval = 8000;
     vm.slides = [
       {
-        image: 'http://all4desktop.com/data_images/original/4145439-pearl-bridge-in-japan.jpg'
+        image: 'http://wallpaper.thaiware.com/upload/wallpaper/2009_08/16405_7349_090813162558_41.jpg'
       },
       {
-        image: 'https://i.ytimg.com/vi/mnBXNuB1TGU/maxresdefault.jpg'
+        image: 'http://f.ptcdn.info/183/007/000/1373684879-0001-o.jpg'
+      }
+    ];
+    vm.reviews = [
+      {
+        image: 'http://wallpaper.thaiware.com/upload/wallpaper/2009_08/16405_7349_090813162558_41.jpg'
+      },
+      {
+        image: 'http://f.ptcdn.info/183/007/000/1373684879-0001-o.jpg'
       }
     ];
   }
+
 })();
