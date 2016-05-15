@@ -876,6 +876,26 @@ hr.hr {
     }
     z-index: 2;
   }
+  .textProduct {
+    padding-top: 210px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-align: center;
+    .text {
+      position: relative;
+      color: rgba(255,255,255,0.8);
+      font-size: 40px;
+      z-index: 2;
+      span {
+        font-size: 30px;
+        color: rgba(255,255,255,0.5);
+      }
+    }
+    .input-group {
+      margin: 0 auto;
+      max-width: 650px;
+    }
+  }
 }
 .containerArticle {
   position: relative;

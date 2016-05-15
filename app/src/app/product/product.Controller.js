@@ -4,9 +4,16 @@
   angular
     .module('app')
     .controller('addProductController', addProductController)
+    .controller('listProductController', ProductController)
     .controller('listProductController', listProductController)
     .controller('editProductController', editProductController);
 
+
+  /** @ngInject */
+  function ProductController($http, $location, $rootScope, productService) {
+    var vm = this;
+
+  }
 
   /** @ngInject */
   function addProductController($http, $location, $rootScope, productService) {

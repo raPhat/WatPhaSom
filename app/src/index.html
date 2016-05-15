@@ -113,7 +113,7 @@
                 </li>
               </div>
               <li class="rightMenu hidden-xs">
-                <a href="#" class="cart">
+                <a href="" class="cart cartModal">
                   <i class="glyphicon glyphicon-shopping-cart"></i> <span class="hidden-xs">CART</span>
                 </a>
               </li>
@@ -247,6 +247,29 @@
   </div>
 </div>
 
+<!-- Modal Cart -->
+<div class="modal cart fade" id="myCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4>
+          <div class="glyphicon glyphicon-shopping-cart"></div>
+          Cart
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="cartList">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        asda
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Latest compiled and minified JavaScript -->
 <script type="text/javascript"
         src="js/bootstrap.js"></script>
@@ -273,6 +296,9 @@
       $(".registerModal").click(function() {
         $('#myModal').modal('hide');
         $('#myRegister').modal('toggle');
+      });
+      $(".cartModal").click(function() {
+        $('#myCart').modal('toggle');
       });
 
       $('.listArticle').affix({

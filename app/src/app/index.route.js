@@ -17,6 +17,11 @@
         controller: 'ArticleController',
         controllerAs: 'vm'
       }).
+      when('/product', {
+        templateUrl: 'app/product/products.html',
+        controller: 'ProductController',
+        controllerAs: 'vm'
+      }).
       when('/addProduct', {
         templateUrl: 'app/product/editProduct.html',
         controller: 'addProductController',
@@ -40,6 +45,11 @@
       when('/shoppingCart', {
         templateUrl: 'app/shoppingcart/shoppingCart.html',
         controller: 'showShoppingCartController',
+        controllerAs: 'vm'
+      }).
+      when('/admin/login', {
+        templateUrl: 'app/dashboard/login.html',
+        controller: 'loginAdminController',
         controllerAs: 'vm'
       }).
       otherwise({redirectTo: '/'});
