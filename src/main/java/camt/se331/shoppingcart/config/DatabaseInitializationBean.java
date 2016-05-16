@@ -84,6 +84,7 @@ public class DatabaseInitializationBean implements InitializingBean {
         Set<Role> roles2 = new HashSet<>();
         roles2.add(userRole);
         user.setRoles(roles2);
+
         userRepository.save(admin);
         userRepository.save(user);
         admin.setRoles(roles);
